@@ -2,6 +2,6 @@
 {
     public interface IStateFactory<DataType> where DataType : IStateData
     {
-        IState<DataType> GetState(DataType dataType);
+        IState<DataType> GetState(DataType stateData);
     }
 }

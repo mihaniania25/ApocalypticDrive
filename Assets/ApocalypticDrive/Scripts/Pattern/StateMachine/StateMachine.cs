@@ -5,7 +5,7 @@ namespace MeShineFactory.ApocalypticDrive.Pattern.StateMachine
 {
     public abstract class StateMachine<DataType> : IStateMachine<DataType> where DataType : IStateData
     {
-        [Inject] private IStateFactory<DataType> stateFactory;
+        [Inject] public IStateFactory<DataType> stateFactory;
 
         private IState<DataType> currentState;
 
