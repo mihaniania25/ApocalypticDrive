@@ -1,5 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
+using Cysharp.Threading.Tasks;
 using Zenject;
 using MeShineFactory.ApocalypticDrive.Level.Config;
 using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
@@ -10,10 +10,13 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
     {
         [Inject] private DiContainer diContainer;
         [Inject] private LevelConfig levelConfig;
+        [Inject] private ILevelEnvironment levelEnvironment;
 
         public override async UniTask Start(IStateData stateData)
         {
             InstantiateVehicle();
+            InitializeEnvironment();
+
             TrySwitchState(LevelStateType.Idle);
 
             await UniTask.CompletedTask;
@@ -25,6 +28,11 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
             IVehicle vehicle = vehicleGO.GetComponent<IVehicle>();
 
             diContainer.Bind<IVehicle>().FromInstance(vehicle).AsSingle();
+        }
+
+        private void InitializeEnvironment()
+        {
+            levelEnvironment.StartBuilding();
         }
 
         public override async UniTask Stop()

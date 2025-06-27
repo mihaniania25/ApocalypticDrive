@@ -6,5 +6,6 @@ namespace MeShineFactory.ApocalypticDrive.Level.Config
     public class LevelConfig : ScriptableObject
     {
         [field: SerializeField] public GameObject VehiclePrefab { get; private set; }
+        [field: SerializeField] public GameObject TilePrefab { get; private set; }
     }
 }
