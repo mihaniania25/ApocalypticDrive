@@ -8,16 +8,14 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
     {
         [Inject] private IUserInputController userInputController;
 
-        override public async UniTask Start(IStateData stateData)
+        public override async UniTask Start(IStateData stateData)
         {
-            ProjectLog.Info("[LevelState] IDLE start");
             await userInputController.WaitScreenTouch();
             TrySwitchState(LevelStateType.Action);
         }
 
-        override public async UniTask Stop()
+        public override async UniTask Stop()
         {
-            ProjectLog.Info("[LevelState] IDLE stop");
             await UniTask.CompletedTask;
         }
     }

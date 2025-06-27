@@ -29,14 +29,16 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         {
             switch (type)
             {
+                case LevelStateType.Initialization:
+                    return diContainer.Instantiate<LevelStateInitialization>();
                 case LevelStateType.Idle:
                     return diContainer.Instantiate<LevelStateIdle>();
                 case LevelStateType.Action:
-                    return new LevelStateAction();
+                    return diContainer.Instantiate<LevelStateAction>();
                 case LevelStateType.Defeat:
-                    return new LevelStateDefeat();
+                    return diContainer.Instantiate<LevelStateDefeat>();
                 case LevelStateType.Victory:
-                    return new LevelStateVictory();
+                    return diContainer.Instantiate<LevelStateVictory>();
                 default:
                     ProjectLog.Error($"[LevelStateFactory] no implementation for type '{type}'");
                     return null;

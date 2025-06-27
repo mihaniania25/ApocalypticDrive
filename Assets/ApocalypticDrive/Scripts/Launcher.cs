@@ -14,7 +14,7 @@ namespace MeShineFactory.ApocalypticDrive
             ProjectLog.Info("[Launcher] start");
 
             await SetupLevelStateMachine();
-            await levelStateMachine.RunState(LevelStateType.Idle);
+            await levelStateMachine.RunState(LevelStateType.Initialization);
         }
 
         private async UniTask SetupLevelStateMachine()
