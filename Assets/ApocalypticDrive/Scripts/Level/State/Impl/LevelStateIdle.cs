@@ -1,24 +1,23 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Zenject;
 using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
 
 namespace MeShineFactory.ApocalypticDrive.Level.State
 {
-    public class LevelStateIdle : IState<LevelStateData>
+    public class LevelStateIdle : BaseLevelState
     {
-        public event Action<LevelStateData> OnStateChangeRequest;
+        [Inject] private IUserInputController userInputController;
 
-        public async UniTask Start(IStateData stateData)
+        override public async UniTask Start(IStateData stateData)
         {
-#warning TODO: level state Action
-            ProjectLog.Info("[LevelState] idle start");
-            await UniTask.CompletedTask;
+            ProjectLog.Info("[LevelState] IDLE start");
+            await userInputController.WaitScreenTouch();
+            TrySwitchState(LevelStateType.Action);
         }
 
-        public async UniTask Stop()
+        override public async UniTask Stop()
         {
-#warning TODO: level state Stop
-            ProjectLog.Info("[LevelState] idle stop");
+            ProjectLog.Info("[LevelState] IDLE stop");
             await UniTask.CompletedTask;
         }
     }

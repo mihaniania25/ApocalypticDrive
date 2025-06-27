@@ -1,9 +1,18 @@
-﻿using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
+﻿using Zenject;
+using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
 
 namespace MeShineFactory.ApocalypticDrive.Level.State
 {
     public class LevelStateFactory : IStateFactory<LevelStateData>
     {
+        readonly DiContainer diContainer;
+
+        [Inject]
+        public LevelStateFactory(DiContainer container)
+        {
+            diContainer = container;
+        }
+
         public IState<LevelStateData> GetState(LevelStateData stateData)
         {
             if (stateData is null || stateData.StateType is LevelStateType.None)
@@ -21,7 +30,7 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
             switch (type)
             {
                 case LevelStateType.Idle:
-                    return new LevelStateIdle();
+                    return diContainer.Instantiate<LevelStateIdle>();
                 case LevelStateType.Action:
                     return new LevelStateAction();
                 case LevelStateType.Defeat:

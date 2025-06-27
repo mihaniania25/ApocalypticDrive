@@ -1,6 +1,7 @@
 ﻿using Zenject;
 using MeShineFactory.ApocalypticDrive.Level.State;
 using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
+using MeShineFactory.ApocalypticDrive.Level;
 
 namespace MeShineFactory.ApocalypticDrive
 {
@@ -8,6 +9,7 @@ namespace MeShineFactory.ApocalypticDrive
     {
         public override void InstallBindings()
         {
+            Container.Bind<IUserInputController>().To<UserInputController>().AsSingle();
             Container.Bind<IStateFactory<LevelStateData>>().To<LevelStateFactory>().AsSingle();
             Container.Bind<LevelStateMachine>().AsSingle();
 
