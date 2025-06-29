@@ -4,15 +4,16 @@ using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
 
 namespace MeShineFactory.ApocalypticDrive.Level.State
 {
-    public abstract class LevelState : IState<LevelStateData>
+    public abstract class BaseLevelState : IState<LevelStateData>
     {
         public event Action<LevelStateData> OnStateChangeRequest;
 
         public abstract UniTask Start(IStateData stateData);
+        public abstract UniTask Stop();
 
-        public virtual async UniTask Stop()
+        protected void TrySwitchState(LevelStateType stateType)
         {
-            await UniTask.CompletedTask;
+            OnStateChangeRequest?.Invoke(new(stateType));
         }
     }
 }
