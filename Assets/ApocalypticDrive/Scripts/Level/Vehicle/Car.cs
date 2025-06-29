@@ -13,12 +13,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public Vector3 Position => transform.position;
 
-        public void StartMoving()
-        {
-            MovingRoutine().Forget();
-        }
-
-        private async UniTask MovingRoutine()
+        public async UniTask StartMoving()
         {
             await Accelerate(Vector3.forward * Speed);
         }
@@ -42,7 +37,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public async UniTask Explode()
         {
-            await Accelerate(Vector3.zero);
+            await UniTask.CompletedTask;
         }
     }
 }

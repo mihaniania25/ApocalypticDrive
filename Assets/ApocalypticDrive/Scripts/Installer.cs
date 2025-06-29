@@ -17,6 +17,7 @@ namespace MeShineFactory.ApocalypticDrive
             Container.Bind<IStateFactory<LevelStateData>>().To<LevelStateFactory>().AsSingle();
             Container.Bind<LevelConfig>().FromInstance(levelConfig).AsSingle();
             Container.Bind<ILevelEnvironment>().To<ClassicLevelEnvironment>().AsSingle();
+            Container.Bind<LevelProgressListener>().AsSingle();
             Container.Bind<LevelStateMachine>().AsSingle();
 
             ProjectLog.Info("[Installer] bindings installed");
