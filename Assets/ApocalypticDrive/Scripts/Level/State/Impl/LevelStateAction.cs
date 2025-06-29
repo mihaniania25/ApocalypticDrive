@@ -1,13 +1,16 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Zenject;
+using Cysharp.Threading.Tasks;
 using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
 
 namespace MeShineFactory.ApocalypticDrive.Level.State
 {
     public class LevelStateAction : BaseLevelState
     {
+        [Inject] private IVehicle vehicle;
+
         public override async UniTask Start(IStateData stateData)
         {
-#warning TODO: level state Action
+            vehicle.StartMoving();
             await UniTask.CompletedTask;
         }
 

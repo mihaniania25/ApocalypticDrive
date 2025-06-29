@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace MeShineFactory.ApocalypticDrive.Level
 {
@@ -6,5 +7,9 @@ namespace MeShineFactory.ApocalypticDrive.Level
     {
         Vector3 Position { get; }
         float Speed { get; }
+
+        void StartMoving();
+        UniTask Park();
+        UniTask Explode();
     }
 }
