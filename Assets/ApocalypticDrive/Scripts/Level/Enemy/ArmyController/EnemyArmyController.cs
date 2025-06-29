@@ -13,7 +13,15 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [Inject] private LazyInject<IVehicle> vehicle;
         [Inject] private GameSessionModel sessionModel;
 
+        private Transform enemiesContainer;
+
         private EnemiesGenerationSettings genSettings => levelConfig.EnemiesGenerationSettings;
+
+        public void Setup()
+        {
+            GameObject containerGO = new GameObject("Enemies Container");
+            enemiesContainer = containerGO.transform;
+        }
 
         public void DestroyAllEnemies()
         {
@@ -41,6 +49,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
             GameObject enemyGO = diContainer.InstantiatePrefab(genSettings.EnemyPrefab);
             enemyGO.transform.position = position;
             enemyGO.transform.Rotate(Vector3.up, Random.Range(0, 360f));
+            enemyGO.transform.SetParent(enemiesContainer);
 
             IEnemy enemy = enemyGO.GetComponent<IEnemy>();
             sessionModel.Enemies.Add(enemy);

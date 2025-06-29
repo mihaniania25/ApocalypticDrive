@@ -2,6 +2,7 @@
 {
     public interface IEnemyArmyController
     {
+        void Setup();
         void DestroyAllEnemies();
         void GenerateEnemies();
     }
