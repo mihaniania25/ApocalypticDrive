@@ -9,6 +9,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
         Vector3 Position { get; }
         float Speed { get; }
 
+        void TakeDamage(float damage);
+
         UniTask StartMoving();
         UniTask Park();
         UniTask Explode();

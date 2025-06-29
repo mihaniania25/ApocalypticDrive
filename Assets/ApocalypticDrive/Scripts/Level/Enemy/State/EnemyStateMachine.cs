@@ -6,12 +6,11 @@ namespace MeShineFactory.ApocalypticDrive.Level
     public class EnemyStateMachine : StateMachine<EnemyStateData>
     {
         private EnemyComponents enemyComponents;
-        private EnemyEventBus eventBus;
+        private EnemyEventBus eventBus => enemyComponents.EventBus;
 
-        public EnemyStateMachine(EnemyComponents enemyComponents, EnemyEventBus eventBus)
+        public EnemyStateMachine(EnemyComponents enemyComponents)
         {
             this.enemyComponents = enemyComponents;
-            this.eventBus = eventBus;
         }
 
         public async UniTask RunState(EnemyStateType stateType)

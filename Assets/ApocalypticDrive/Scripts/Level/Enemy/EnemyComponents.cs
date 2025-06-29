@@ -7,6 +7,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
     public class EnemyComponents
     {
         public PropagationField<float> Health { get; private set; } = new();
+        public EnemyEventBus EventBus { get; private set; } = new();
+        public EnemyStateMachine StateMachine { get; set; }
 
         [field: SerializeField] public GameObject Root { get;private set; }
 
@@ -21,6 +23,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         [field: SerializeField] public float MaxHealth { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
+        [field: SerializeField] public float Damage { get; private set; }
         [field: SerializeField] public float VehicleVisibilityDistance { get; private set; }
     }
 }

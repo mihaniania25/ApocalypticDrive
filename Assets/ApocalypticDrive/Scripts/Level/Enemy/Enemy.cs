@@ -13,17 +13,23 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [Inject] private DiContainer diContainer;
 
         [SerializeField] private EnemyComponents components;
+        [SerializeField] private EnemyHitDetector hitDetector;
 
-        private EnemyEventBus eventBus = new();
-        private EnemyStateMachine stateMachine;
+        private EnemyHealthController healthController;
 
         private async void Start()
         {
             components.Health.Value = components.MaxHealth;
 
-            eventBus.Subscribe(EnemyEventType.Dying, EnemyDyingHandler);
-            stateMachine = diContainer.Instantiate<EnemyStateMachine>(new object[] { components, eventBus });
-            await stateMachine.RunState(EnemyStateType.Idle);
+            hitDetector.Setup(components);
+
+            components.EventBus.Subscribe(EnemyEventType.Dying, EnemyDyingHandler);
+            components.StateMachine = diContainer.Instantiate<EnemyStateMachine>(new object[] { components });
+
+            healthController = diContainer.Instantiate<EnemyHealthController>(new object[] { components });
+            healthController.Setup();
+
+            await components.StateMachine.RunState(EnemyStateType.Idle);
         }
 
         private void EnemyDyingHandler(BusEventData<EnemyEventType> eventData)
@@ -33,13 +39,13 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public void Die()
         {
-            stateMachine.RunState(EnemyStateType.Dead).Forget();
+            components.StateMachine.RunState(EnemyStateType.Dead).Forget();
         }
 
         public void DieInstantly()
         {
             components.Health.SetValueSilently(0f);
-            stateMachine.Dispose().Forget();
+            components.StateMachine.Dispose().Forget();
             Destroy(gameObject);
         }
     }
