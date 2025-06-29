@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a1eb7c75a367a4b89574319c171f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 2
-  accelerationDuration: 0.5
+  <Speed>k__BackingField: 5
+  accelerationDuration: 0.7
   carRigidbody: {fileID: 4012873970993123918}
 --- !u!54 &4012873970993123918
 Rigidbody:

@@ -14,6 +14,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [Inject] private LevelConfig levelConfig;
         [Inject] private LazyInject<IVehicle> vehicle;
 
+        private bool isFollowingVehicle = false;
+
         private CameraSettings cameraSettings => levelConfig.CameraSettings;
 
         public async UniTask LookAtVehicleSide()
@@ -47,12 +49,24 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public void StartFollowingVehicle()
         {
-            throw new NotImplementedException();
+            isFollowingVehicle = true;
+            FollowingVehicleRoutine().Forget();
+        }
+
+        private async UniTask FollowingVehicleRoutine()
+        {
+            Vector3 offset = controllerCamera.transform.position - vehicle.Value.Position;
+
+            while (isFollowingVehicle)
+            {
+                controllerCamera.transform.position = vehicle.Value.Position + offset;
+                await UniTask.Yield();
+            }
         }
 
         public void StopFollowingVehicle()
         {
-            throw new NotImplementedException();
+            isFollowingVehicle = false;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         public override async UniTask Start(IStateData stateData)
         {
             await cameraController.LookAtVehicleBack();
+            cameraController.StartFollowingVehicle();
             await vehicle.StartMoving();
 
             vehicleFlowListener.OnLevelDistancePassed += OnLevelDistancePassed;
