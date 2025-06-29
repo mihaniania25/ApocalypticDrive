@@ -11,6 +11,8 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
 
         public override async UniTask Start(IStateData stateData)
         {
+            ProjectLog.Info("[LevelStateIdle] Start");
+
             await cameraController.LookAtVehicleSide();
             await userInputController.WaitScreenTouch();
             TrySwitchState(LevelStateType.Action);

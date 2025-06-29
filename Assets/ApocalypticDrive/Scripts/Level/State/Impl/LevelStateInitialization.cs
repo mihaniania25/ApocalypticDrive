@@ -15,6 +15,8 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
 
         public override async UniTask Start(IStateData stateData)
         {
+            ProjectLog.Info("[LevelStateInitialization] Start");
+
             InitializeArmyController();
             InstantiateVehicle();
             InitializeEnvironment();

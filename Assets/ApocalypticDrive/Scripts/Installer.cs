@@ -17,6 +17,7 @@ namespace MeShineFactory.ApocalypticDrive
         {
             Container.Bind<IUserInputController>().To<UserInputController>().AsSingle();
             Container.Bind<IStateFactory<LevelStateData>>().To<LevelStateFactory>().AsSingle();
+            Container.Bind<IStateFactory<EnemyStateData>>().To<EnemyStateFactory>().AsSingle();
             Container.Bind<LevelConfig>().FromInstance(levelConfig).AsSingle();
             Container.Bind<ILevelEnvironment>().To<ClassicLevelEnvironment>().AsSingle();
             Container.Bind<ICameraController>().FromInstance(cameraController).AsSingle();

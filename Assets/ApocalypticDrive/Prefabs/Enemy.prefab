@@ -48,12 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b614a5f342cace4188f73db30c0bfba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 3068903478733134801}
-  animatorListener: {fileID: 5503538979408610134}
-  animDeadStateName: IsDead
-  bloodParticles: {fileID: 2396495673579300733}
-  mainCollider: {fileID: 6102707228382822480}
-  mainRigidbody: {fileID: 5488000904937576543}
+  components:
+    <Root>k__BackingField: {fileID: 7762777468386460252}
+    <Animator>k__BackingField: {fileID: 3068903478733134801}
+    <AnimatorListener>k__BackingField: {fileID: 5503538979408610134}
+    <AnimDeadStateName>k__BackingField: IsDead
+    <BloodParticles>k__BackingField: {fileID: 2396495673579300733}
+    <MainCollider>k__BackingField: {fileID: 6102707228382822480}
+    <MainRigidbody>k__BackingField: {fileID: 5488000904937576543}
 --- !u!136 &6102707228382822480
 CapsuleCollider:
   m_ObjectHideFlags: 0

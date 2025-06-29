@@ -1,5 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using Zenject;
+using MeShineFactory.ApocalypticDrive.Pattern.LocalEventBus;
 
 namespace MeShineFactory.ApocalypticDrive.Level
 {
@@ -7,31 +10,29 @@ namespace MeShineFactory.ApocalypticDrive.Level
     {
         public event Action<IEnemy> OnDead;
 
-        [SerializeField] private Animator animator;
-        [SerializeField] private AnimatorListener animatorListener;
-        [SerializeField] private string animDeadStateName;
-        [SerializeField] private ParticleSystem bloodParticles;
+        [Inject] private DiContainer diContainer;
 
-        [SerializeField] private Collider mainCollider;
-        [SerializeField] private Rigidbody mainRigidbody;
+        [SerializeField] private EnemyComponents components;
+
+        private EnemyEventBus eventBus = new();
+        private EnemyStateMachine stateMachine;
+
+        private async void Awake()
+        {
+            eventBus.Subscribe(EnemyEventType.Dying, EnemyDyingHandler);
+
+            stateMachine = diContainer.Instantiate<EnemyStateMachine>(new object[] { components, eventBus });
+            await stateMachine.RunState(EnemyStateType.Idle);
+        }
+
+        private void EnemyDyingHandler(BusEventData<EnemyEventType> eventData)
+        {
+            OnDead?.Invoke(this);
+        }
 
         public void Die()
         {
-            OnDead?.Invoke(this);
-
-            Destroy(mainCollider);
-            Destroy(mainRigidbody);
-
-            animatorListener.OnAnimationCompleted += OnDeathAnimationCompleted;
-            animator.SetBool(animDeadStateName, true);
-
-            bloodParticles.Play();
-        }
-
-        private void OnDeathAnimationCompleted()
-        {
-            animatorListener.OnAnimationCompleted -= OnDeathAnimationCompleted;
-            Destroy(gameObject);
+            stateMachine.RunState(EnemyStateType.Dead).Forget();
         }
     }
 }
