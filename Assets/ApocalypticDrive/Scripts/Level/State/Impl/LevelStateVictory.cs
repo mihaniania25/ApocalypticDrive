@@ -7,10 +7,12 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
     public class LevelStateVictory : BaseLevelState
     {
         [Inject] private IVehicle vehicle;
+        [Inject] private ICameraController cameraController;
 
         public override async UniTask Start(IStateData stateData)
         {
             await vehicle.Park();
+            cameraController.StopFollowingVehicle();
         }
 
         public override async UniTask Stop()

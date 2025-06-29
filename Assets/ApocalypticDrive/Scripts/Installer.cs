@@ -10,6 +10,7 @@ namespace MeShineFactory.ApocalypticDrive
     public class Installer : MonoInstaller
     {
         [SerializeField] private LevelConfig levelConfig;
+        [SerializeField] private DefaultCameraController cameraController;
 
         public override void InstallBindings()
         {
@@ -17,6 +18,7 @@ namespace MeShineFactory.ApocalypticDrive
             Container.Bind<IStateFactory<LevelStateData>>().To<LevelStateFactory>().AsSingle();
             Container.Bind<LevelConfig>().FromInstance(levelConfig).AsSingle();
             Container.Bind<ILevelEnvironment>().To<ClassicLevelEnvironment>().AsSingle();
+            Container.Bind<ICameraController>().FromInstance(cameraController);
             Container.Bind<LevelProgressListener>().AsSingle();
             Container.Bind<LevelStateMachine>().AsSingle();
 

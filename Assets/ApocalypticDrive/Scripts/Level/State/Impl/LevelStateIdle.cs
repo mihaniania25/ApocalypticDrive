@@ -7,9 +7,11 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
     public class LevelStateIdle : BaseLevelState
     {
         [Inject] private IUserInputController userInputController;
+        [Inject] private ICameraController cameraController;
 
         public override async UniTask Start(IStateData stateData)
         {
+            await cameraController.LookAtVehicleSide();
             await userInputController.WaitScreenTouch();
             TrySwitchState(LevelStateType.Action);
         }
