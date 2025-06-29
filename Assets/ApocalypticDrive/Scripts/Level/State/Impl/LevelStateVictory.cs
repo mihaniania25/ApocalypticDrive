@@ -8,11 +8,15 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
     {
         [Inject] private IVehicle vehicle;
         [Inject] private ICameraController cameraController;
+        [Inject] private IUserInputController userInputController;
 
         public override async UniTask Start(IStateData stateData)
         {
             await vehicle.Park();
             cameraController.StopFollowingVehicle();
+
+            await userInputController.WaitScreenTouch();
+            TrySwitchState(LevelStateType.Idle);
         }
 
         public override async UniTask Stop()
