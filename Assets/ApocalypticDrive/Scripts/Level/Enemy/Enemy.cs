@@ -10,6 +10,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [SerializeField] private Animator animator;
         [SerializeField] private AnimatorListener animatorListener;
         [SerializeField] private string animDeadStateName;
+        [SerializeField] private ParticleSystem bloodParticles;
 
         [SerializeField] private Collider mainCollider;
         [SerializeField] private Rigidbody mainRigidbody;
@@ -23,6 +24,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
             animatorListener.OnAnimationCompleted += OnDeathAnimationCompleted;
             animator.SetBool(animDeadStateName, true);
+
+            bloodParticles.Play();
         }
 
         private void OnDeathAnimationCompleted()
