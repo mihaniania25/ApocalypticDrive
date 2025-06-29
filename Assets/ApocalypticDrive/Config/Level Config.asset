@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <VehiclePrefab>k__BackingField: {fileID: 8285805099822373284, guid: 48e2d738c65068c479c3a3a45b000de9, type: 3}
   <TilePrefab>k__BackingField: {fileID: 7206433486862983094, guid: f44f3def57374fa46a9b314c8698f5f7, type: 3}
+  <LevelDistance>k__BackingField: 5
+  <CameraSettings>k__BackingField:
+    VehicleSideLook:
+      <PositionOffset>k__BackingField: {x: -2.124276, y: 1.62368, z: 2.101672}
+      <RotationEuler>k__BackingField: {x: 27.846, y: 129.775, z: 0}
+    VehicleBackLook:
+      <PositionOffset>k__BackingField: {x: 0, y: 5.331584, z: -5.634717}
+      <RotationEuler>k__BackingField: {x: 30.424, y: 0, z: 0}
+    LookTransitionDuration: 1

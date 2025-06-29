@@ -7,10 +7,12 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
     public class LevelStateAction : BaseLevelState
     {
         [Inject] private IVehicle vehicle;
+        [Inject] private ICameraController cameraController;
         [Inject] private LevelProgressListener vehicleFlowListener;
 
         public override async UniTask Start(IStateData stateData)
         {
+            await cameraController.LookAtVehicleBack();
             await vehicle.StartMoving();
 
             vehicleFlowListener.OnLevelDistancePassed += OnLevelDistancePassed;
