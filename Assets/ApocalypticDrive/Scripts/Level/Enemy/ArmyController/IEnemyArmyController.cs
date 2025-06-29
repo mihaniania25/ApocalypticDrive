@@ -1,7 +1,8 @@
 ﻿namespace MeShineFactory.ApocalypticDrive.Level
 {
-    public interface IEnemiesGenerator
+    public interface IEnemyArmyController
     {
+        void DestroyAllEnemies();
         void GenerateEnemies();
     }
 }

@@ -2,10 +2,11 @@
 using Zenject;
 using MeShineFactory.ApocalypticDrive.Level.Config;
 using MeShineFactory.ApocalypticDrive.Level.Model;
+using System.Collections.Generic;
 
 namespace MeShineFactory.ApocalypticDrive.Level
 {
-    public class EnemiesGenerator : IEnemiesGenerator
+    public class EnemyArmyController : IEnemyArmyController
     {
         [Inject] private DiContainer diContainer;
         [Inject] private LevelConfig levelConfig;
@@ -13,6 +14,12 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [Inject] private GameSessionModel sessionModel;
 
         private EnemiesGenerationSettings genSettings => levelConfig.EnemiesGenerationSettings;
+
+        public void DestroyAllEnemies()
+        {
+            List<IEnemy> enemies = new(sessionModel.Enemies);
+            enemies.ForEach(e => e.Die());
+        }
 
         public void GenerateEnemies()
         {
@@ -37,6 +44,14 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
             IEnemy enemy = enemyGO.GetComponent<IEnemy>();
             sessionModel.Enemies.Add(enemy);
+
+            enemy.OnDead += OnEnemyDead;
+        }
+
+        private void OnEnemyDead(IEnemy enemy)
+        {
+            enemy.OnDead -= OnEnemyDead;
+            sessionModel.Enemies.Remove(enemy);
         }
     }
 }

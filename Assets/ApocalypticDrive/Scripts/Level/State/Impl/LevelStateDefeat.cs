@@ -9,9 +9,12 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         [Inject] private IVehicle vehicle;
         [Inject] private ICameraController cameraController;
         [Inject] private IUserInputController userInputController;
+        [Inject] private IEnemyArmyController enemyArmyController;
 
         public override async UniTask Start(IStateData stateData)
         {
+            enemyArmyController.DestroyAllEnemies();
+
             await vehicle.Park();
             await vehicle.Explode();
             cameraController.StopFollowingVehicle();
