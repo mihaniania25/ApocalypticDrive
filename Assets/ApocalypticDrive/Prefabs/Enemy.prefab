@@ -53,9 +53,13 @@ MonoBehaviour:
     <Animator>k__BackingField: {fileID: 3068903478733134801}
     <AnimatorListener>k__BackingField: {fileID: 5503538979408610134}
     <AnimDeadStateName>k__BackingField: IsDead
+    <AnimRunningStateName>k__BackingField: IsRunning
     <BloodParticles>k__BackingField: {fileID: 2396495673579300733}
     <MainCollider>k__BackingField: {fileID: 6102707228382822480}
     <MainRigidbody>k__BackingField: {fileID: 5488000904937576543}
+    <MaxHealth>k__BackingField: 100
+    <Speed>k__BackingField: 4
+    <VehicleVisibilityDistance>k__BackingField: 7
 --- !u!136 &6102707228382822480
 CapsuleCollider:
   m_ObjectHideFlags: 0

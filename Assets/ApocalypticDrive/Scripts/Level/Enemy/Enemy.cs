@@ -17,10 +17,11 @@ namespace MeShineFactory.ApocalypticDrive.Level
         private EnemyEventBus eventBus = new();
         private EnemyStateMachine stateMachine;
 
-        private async void Awake()
+        private async void Start()
         {
-            eventBus.Subscribe(EnemyEventType.Dying, EnemyDyingHandler);
+            components.Health.Value = components.MaxHealth;
 
+            eventBus.Subscribe(EnemyEventType.Dying, EnemyDyingHandler);
             stateMachine = diContainer.Instantiate<EnemyStateMachine>(new object[] { components, eventBus });
             await stateMachine.RunState(EnemyStateType.Idle);
         }
@@ -33,6 +34,13 @@ namespace MeShineFactory.ApocalypticDrive.Level
         public void Die()
         {
             stateMachine.RunState(EnemyStateType.Dead).Forget();
+        }
+
+        public void DieInstantly()
+        {
+            components.Health.SetValueSilently(0f);
+            stateMachine.Dispose().Forget();
+            Destroy(gameObject);
         }
     }
 }

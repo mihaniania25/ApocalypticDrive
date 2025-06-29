@@ -10,6 +10,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         {
             await base.Start(stateData);
 
+            components.Health.SetValueSilently(0f);
             eventBus.Broadcast(EnemyEventType.Dying);
 
             GameObject.Destroy(components.MainCollider);

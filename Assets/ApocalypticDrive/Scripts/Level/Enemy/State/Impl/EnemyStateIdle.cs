@@ -8,6 +8,11 @@ namespace MeShineFactory.ApocalypticDrive.Level
         public override async UniTask Start(IStateData stateData)
         {
             await base.Start(stateData);
+
+            while (isAlive && GetDistanceToVehicle() > components.VehicleVisibilityDistance)
+                await UniTask.Yield();
+
+            TrySwitchState(EnemyStateType.Chase);
         }
     }
 }

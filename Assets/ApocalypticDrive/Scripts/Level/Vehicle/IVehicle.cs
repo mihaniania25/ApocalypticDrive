@@ -5,6 +5,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 {
     public interface IVehicle
     {
+        Transform Transform { get; }
         Vector3 Position { get; }
         float Speed { get; }
 

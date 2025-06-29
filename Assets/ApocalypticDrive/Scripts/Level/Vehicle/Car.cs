@@ -11,6 +11,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [SerializeField] private float accelerationDuration;
         [SerializeField] private Rigidbody carRigidbody;
 
+        public Transform Transform => transform;
         public Vector3 Position => transform.position;
 
         public async UniTask StartMoving()

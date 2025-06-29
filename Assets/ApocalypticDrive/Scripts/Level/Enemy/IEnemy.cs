@@ -6,5 +6,6 @@ namespace MeShineFactory.ApocalypticDrive.Level
     {
         event Action<IEnemy> OnDead;
         void Die();
+        void DieInstantly();
     }
 }
