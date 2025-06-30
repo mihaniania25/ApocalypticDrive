@@ -6,5 +6,9 @@ namespace MeShineFactory.ApocalypticDrive.Level
     {
         GameObject Root { get; }
         Transform Transform { get; }
+
+        float ShootingFrequency { get; }
+
+        void Shoot();
     }
 }

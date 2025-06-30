@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 718350800397857345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TurretMount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1946405920566258274}
   - component: {fileID: 4012873970993123918}
   - component: {fileID: 5360697548200825933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Car
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -186,6 +186,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ad10160e2a225e4495031ee5bd0a5cc, type: 3}
       propertyPath: m_Name
       value: mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ad10160e2a225e4495031ee5bd0a5cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
