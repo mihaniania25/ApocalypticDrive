@@ -19,6 +19,9 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [SerializeField] private Rigidbody carRigidbody;
         [SerializeField] private Transform turretMount;
 
+        [SerializeField] private ParticleSystem explosionParticles;
+        [SerializeField] private float explosionDuration = 2f;
+
         [SerializeField] private AudioSource movementAudioSource;
         [SerializeField] private AudioSource injuryAudioSource;
 
@@ -66,8 +69,17 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public async UniTask Explode()
         {
+            explosionParticles.gameObject.SetActive(true);
+            explosionParticles.Play();
+
             audioManager.PlaySound(SoundID.VehicleExplosion, injuryAudioSource);
-            await UniTask.CompletedTask;
+            await UniTask.WaitForSeconds(explosionDuration);
+        }
+
+        public void Restore()
+        {
+            explosionParticles.Stop();
+            explosionParticles.gameObject.SetActive(false);
         }
 
         public void StopInstantly()

@@ -31,6 +31,8 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         public override async UniTask Stop()
         {
             levelUIManager.HideScreen();
+            vehicle.Restore();
+
             await UniTask.CompletedTask;
         }
     }
