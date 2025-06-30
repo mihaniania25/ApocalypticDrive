@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734d867f140983446b0945f24112fa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ShootingFrequency>k__BackingField: 3
+  <ShootingFrequency>k__BackingField: 5
   projectilePrefab: {fileID: 8396600390039994974, guid: 1056403e92930e94d95156f4c06b160d, type: 3}
   projectileMount: {fileID: 7686190450643092235}
 --- !u!1001 &4094258681113853587

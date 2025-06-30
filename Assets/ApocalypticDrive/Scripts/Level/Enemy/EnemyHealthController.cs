@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Zenject;
 using MeShineFactory.ApocalypticDrive.Pattern.LocalEventBus;
+using UnityEngine;
 
 namespace MeShineFactory.ApocalypticDrive.Level
 {
@@ -27,11 +28,19 @@ namespace MeShineFactory.ApocalypticDrive.Level
             components.Health.Value = 0f;
         }
 
+        public void TakeDamage(float damage)
+        {
+            float newHealth = Mathf.Clamp(components.Health.Value - damage, 0f, components.MaxHealth);
+            components.Health.Value = newHealth;
+
+            if (newHealth > 0f)
+                components.FxController.PlayInjuryFx();
+        }
+
         private void OnEnemyHealthChange(float health)
         {
             if (health <= 0f)
                 components.StateMachine.RunState(EnemyStateType.Dead).Forget();
-#warning TODO: blood splash on hit
         }
 
         public void Dispose()

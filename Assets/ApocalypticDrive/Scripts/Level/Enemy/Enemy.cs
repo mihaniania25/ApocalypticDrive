@@ -33,12 +33,18 @@ namespace MeShineFactory.ApocalypticDrive.Level
             components.StateMachine = diContainer.Instantiate<EnemyStateMachine>(new object[] { components });
 
             healthController = diContainer.Instantiate<EnemyHealthController>(new object[] { components });
+            components.FxController = diContainer.Instantiate<EnemyFxController>(new object[] { components });
             healthController.Setup();
         }
 
         private void EnemyDyingHandler(BusEventData<EnemyEventType> eventData)
         {
             OnDead?.Invoke(this);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            healthController.TakeDamage(damage);
         }
 
         public void Die()
