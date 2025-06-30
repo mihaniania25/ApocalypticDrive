@@ -21,10 +21,16 @@ MonoBehaviour:
     <Volume>k__BackingField: 1
   - <ID>k__BackingField: 3
     <Clip>k__BackingField: {fileID: 8300000, guid: f740eaf88bb143c4f98aae3ee24516d4, type: 3}
-    <Volume>k__BackingField: 1
+    <Volume>k__BackingField: 0.5
   - <ID>k__BackingField: 4
     <Clip>k__BackingField: {fileID: 8300000, guid: bcac74d8847c48d49a9bd7155326eaa4, type: 3}
-    <Volume>k__BackingField: 1
+    <Volume>k__BackingField: 0.4
   - <ID>k__BackingField: 5
     <Clip>k__BackingField: {fileID: 8300000, guid: cf6344cc3af8cd74d91d73fbfc431cb3, type: 3}
     <Volume>k__BackingField: 1
+  - <ID>k__BackingField: 6
+    <Clip>k__BackingField: {fileID: 8300000, guid: 175bdf6cb5be9d74b934932507019a03, type: 3}
+    <Volume>k__BackingField: 0.5
+  - <ID>k__BackingField: 7
+    <Clip>k__BackingField: {fileID: 8300000, guid: 44701ee9cc5df154e9c2db7b0dc5c220, type: 3}
+    <Volume>k__BackingField: 0.5

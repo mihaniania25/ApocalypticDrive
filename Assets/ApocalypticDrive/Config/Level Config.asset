@@ -26,6 +26,7 @@ MonoBehaviour:
     LookTransitionDuration: 1
   <EnemiesGenerationSettings>k__BackingField:
     <EnemyPrefab>k__BackingField: {fileID: 7762777468386460252, guid: 1b577d068623628489487364b5e7a180, type: 3}
-    <EnemiesCount>k__BackingField: 30
-    <DistanceOffset>k__BackingField: 17
+    <EnemiesCount>k__BackingField: 27
+    <DistanceOffsetStart>k__BackingField: 22
+    <DistanceOffsetEnd>k__BackingField: 3
     <WidthOfGenerationField>k__BackingField: 10

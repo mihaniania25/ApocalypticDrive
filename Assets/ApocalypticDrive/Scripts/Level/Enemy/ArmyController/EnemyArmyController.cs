@@ -35,8 +35,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public void GenerateEnemies()
         {
-            float fieldStart = vehicle.Value.Position.z + genSettings.DistanceOffset;
-            float fieldEnd = vehicle.Value.Position.z + levelConfig.LevelDistance - genSettings.DistanceOffset;
+            float fieldStart = vehicle.Value.Position.z + genSettings.DistanceOffsetStart;
+            float fieldEnd = vehicle.Value.Position.z + levelConfig.LevelDistance - genSettings.DistanceOffsetEnd;
             float fieldHalfWidth = genSettings.WidthOfGenerationField / 2.0f;
 
             for (int i = 0; i < genSettings.EnemiesCount; i++)
