@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MeShineFactory.ApocalypticDrive.UI;
+using System;
 using UnityEngine;
 
 namespace MeShineFactory.ApocalypticDrive.Level
@@ -24,6 +25,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [field: SerializeField] public Collider MainCollider { get; private set; }
         [field: SerializeField] public Rigidbody MainRigidbody { get; private set; }
         [field: SerializeField] public Transform InjuryParticlesMount { get; private set; }
+        [field: SerializeField] public ProgressBar HealthBar { get; private set; }
 
         [field: SerializeField] public float MaxHealth { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }

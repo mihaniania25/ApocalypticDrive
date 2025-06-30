@@ -20,6 +20,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         {
             components.Health.Subscribe(OnEnemyHealthChange);
             components.EventBus.Subscribe(EnemyEventType.HitVehicle, OnEnemyHitVehicle);
+            components.HealthBar.gameObject.SetActive(false);
         }
 
         private void OnEnemyHitVehicle(BusEventData<EnemyEventType> eventData)
@@ -39,6 +40,9 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         private void OnEnemyHealthChange(float health)
         {
+            components.HealthBar.gameObject.SetActive(health > 0f && health < components.MaxHealth);
+            components.HealthBar.Progress.Value = health / components.MaxHealth;
+
             if (health <= 0f)
                 components.StateMachine.RunState(EnemyStateType.Dead).Forget();
         }
