@@ -8,5 +8,7 @@
         Shot,
         VehicleHit,
         VehicleExplosion,
+        VehicleStart,
+        VehicleBreak,
     }
 }

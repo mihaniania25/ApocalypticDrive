@@ -31,7 +31,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
             if (isAlive)
             {
-                await UniTask.WaitForSeconds(cooldownDuration * 1000);
+                await UniTask.WaitForSeconds(cooldownDuration);
                 Destroy(gameObject);
             }
         }

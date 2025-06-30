@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 5
   <MaxHealth>k__BackingField: 100
-  accelerationDuration: 0.7
+  accelerationDuration: 1.5
   carRigidbody: {fileID: 4012873970993123918}
   turretMount: {fileID: 718350800397857345}
   movementAudioSource: {fileID: 1050113339673782105}

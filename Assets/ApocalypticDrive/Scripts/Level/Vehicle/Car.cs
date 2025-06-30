@@ -29,6 +29,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public async UniTask StartMoving()
         {
+            audioManager.PlaySound(SoundID.VehicleStart, movementAudioSource);
             await Accelerate(Vector3.forward * Speed);
             ConstantMoving().Forget();
         }
@@ -59,6 +60,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         public async UniTask Park()
         {
             isConstantMoving = false;
+            audioManager.PlaySound(SoundID.VehicleBreak, movementAudioSource);
             await Accelerate(Vector3.zero);
         }
 
