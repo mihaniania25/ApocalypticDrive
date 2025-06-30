@@ -19,6 +19,12 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         private async void Start()
         {
+            SetupHealthRelatedComponents();
+            await components.StateMachine.RunState(EnemyStateType.Idle);
+        }
+
+        private void SetupHealthRelatedComponents()
+        {
             components.Health.Value = components.MaxHealth;
 
             hitDetector.Setup(components);
@@ -28,8 +34,6 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
             healthController = diContainer.Instantiate<EnemyHealthController>(new object[] { components });
             healthController.Setup();
-
-            await components.StateMachine.RunState(EnemyStateType.Idle);
         }
 
         private void EnemyDyingHandler(BusEventData<EnemyEventType> eventData)
