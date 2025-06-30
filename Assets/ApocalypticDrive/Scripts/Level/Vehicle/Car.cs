@@ -22,6 +22,9 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [SerializeField] private Rigidbody carRigidbody;
         [SerializeField] private Transform turretMount;
 
+        [SerializeField] private Animator animator;
+        [SerializeField] private string hitAnimName;
+
         [SerializeField] private ParticleSystem explosionParticles;
         [SerializeField] private float explosionDuration = 2f;
         [SerializeField] private FlashFX flashFx;
@@ -116,6 +119,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
             audioManager.PlaySound(SoundID.VehicleHit, injuryAudioSource);
             flashFx.ShowFlashFx();
+            animator.SetTrigger(hitAnimName);
         }
 
         public void InstallTurret(ITurret turret)
