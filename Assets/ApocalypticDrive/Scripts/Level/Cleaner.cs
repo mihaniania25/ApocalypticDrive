@@ -11,6 +11,7 @@ namespace MeShineFactory.ApocalypticDrive
         [Inject] private ICameraController cameraController;
         [Inject] private GameSessionModel sessionModel;
         [Inject] private LazyInject<IVehicle> vehicle;
+        [Inject] private ITurretController turretController;
 
         private void OnApplicationQuit()
         {
@@ -18,6 +19,7 @@ namespace MeShineFactory.ApocalypticDrive
             cameraController.StopFollowingVehicle();
             vehicle.Value.StopInstantly();
             sessionModel.Enemies.ForEach(e => e.DieInstantly());
+            turretController.Disable();
         }
     }
 }
