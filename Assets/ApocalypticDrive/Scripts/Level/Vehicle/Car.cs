@@ -16,6 +16,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [field: SerializeField] public float MaxHealth { get; private set; } = 100f;
 
         [SerializeField] private float accelerationDuration;
+        [SerializeField] private float lean;
+        [SerializeField] private float leanDuration;
         [SerializeField] private Rigidbody carRigidbody;
         [SerializeField] private Transform turretMount;
 
@@ -33,7 +35,10 @@ namespace MeShineFactory.ApocalypticDrive.Level
         public async UniTask StartMoving()
         {
             audioManager.PlaySound(SoundID.VehicleStart, movementAudioSource);
-            await Accelerate(Vector3.forward * Speed);
+
+            LeanRoutine(0f, Ease.InExpo).Forget();
+            await Accelerate(Vector3.forward * Speed, Ease.InExpo);
+
             ConstantMoving().Forget();
         }
 
@@ -48,13 +53,25 @@ namespace MeShineFactory.ApocalypticDrive.Level
             }
         }
 
-        private async UniTask Accelerate(Vector3 targetVelocity)
+        private async UniTask LeanRoutine(float targetLean, Ease ease)
+        {
+            bool isLeanCompleted = false;
+            float duration = Mathf.Clamp(leanDuration, 0f, accelerationDuration);
+
+            var leanTween = transform.DORotate(Vector3.up * targetLean, duration);
+            leanTween.SetEase(ease);
+            leanTween.onComplete = () => isLeanCompleted = true;
+
+            await UniTask.WaitUntil(() => isLeanCompleted);
+        }
+
+        private async UniTask Accelerate(Vector3 targetVelocity, Ease ease)
         {
             bool isAccelerationCompleted = false;
 
             var accTween = DOTween.To(() => carRigidbody.velocity, x => carRigidbody.velocity = x,
                 targetVelocity, accelerationDuration)
-                .SetEase(Ease.InExpo);
+                .SetEase(ease);
 
             accTween.onComplete = () => isAccelerationCompleted = true;
             await UniTask.WaitUntil(() => isAccelerationCompleted);
@@ -64,7 +81,9 @@ namespace MeShineFactory.ApocalypticDrive.Level
         {
             isConstantMoving = false;
             audioManager.PlaySound(SoundID.VehicleBreak, movementAudioSource);
-            await Accelerate(Vector3.zero);
+
+            LeanRoutine(lean, Ease.OutExpo).Forget();
+            await Accelerate(Vector3.zero, Ease.InExpo);
         }
 
         public async UniTask Explode()
