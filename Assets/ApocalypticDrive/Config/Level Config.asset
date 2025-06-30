@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <VehiclePrefab>k__BackingField: {fileID: 8285805099822373284, guid: 48e2d738c65068c479c3a3a45b000de9, type: 3}
   <TilePrefab>k__BackingField: {fileID: 7206433486862983094, guid: f44f3def57374fa46a9b314c8698f5f7, type: 3}
-  <LevelDistance>k__BackingField: 50
+  <LevelDistance>k__BackingField: 100
   <CameraSettings>k__BackingField:
     VehicleSideLook:
       <PositionOffset>k__BackingField: {x: -2.124276, y: 1.62368, z: 2.101672}
@@ -23,3 +23,8 @@ MonoBehaviour:
       <PositionOffset>k__BackingField: {x: 0, y: 9.1, z: -6.3547}
       <RotationEuler>k__BackingField: {x: 37.8, y: 0, z: 0}
     LookTransitionDuration: 1
+  <EnemiesGenerationSettings>k__BackingField:
+    <EnemyPrefab>k__BackingField: {fileID: 7762777468386460252, guid: 1b577d068623628489487364b5e7a180, type: 3}
+    <EnemiesCount>k__BackingField: 20
+    <DistanceOffset>k__BackingField: 12
+    <WidthOfGenerationField>k__BackingField: 10

@@ -9,5 +9,6 @@ namespace MeShineFactory.ApocalypticDrive.Level.Config
         [field: SerializeField] public GameObject TilePrefab { get; private set; }
         [field: SerializeField] public float LevelDistance { get; private set; }
         [field: SerializeField] public CameraSettings CameraSettings { get; private set; }
+        [field: SerializeField] public EnemiesGenerationSettings EnemiesGenerationSettings { get; private set; }
     }
 }

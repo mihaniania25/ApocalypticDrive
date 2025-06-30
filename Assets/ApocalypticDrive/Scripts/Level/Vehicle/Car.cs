@@ -11,11 +11,26 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [SerializeField] private float accelerationDuration;
         [SerializeField] private Rigidbody carRigidbody;
 
+        private bool isConstantMoving = false;
+
+        public Transform Transform => transform;
         public Vector3 Position => transform.position;
 
         public async UniTask StartMoving()
         {
             await Accelerate(Vector3.forward * Speed);
+            ConstantMoving().Forget();
+        }
+
+        private async UniTask ConstantMoving()
+        {
+            isConstantMoving = true;
+
+            while (isConstantMoving)
+            {
+                carRigidbody.velocity = Vector3.forward * Speed;
+                await UniTask.Yield();
+            }
         }
 
         private async UniTask Accelerate(Vector3 targetVelocity)
@@ -32,12 +47,18 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public async UniTask Park()
         {
+            isConstantMoving = false;
             await Accelerate(Vector3.zero);
         }
 
         public async UniTask Explode()
         {
             await UniTask.CompletedTask;
+        }
+
+        public void TakeDamage(float damage)
+        {
+#warning TODO: car take damage
         }
     }
 }

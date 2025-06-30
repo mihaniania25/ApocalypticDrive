@@ -19,10 +19,16 @@ namespace MeShineFactory.ApocalypticDrive.Pattern.StateMachine
             await StopCurrentState();
 
             currentState = stateFactory.GetState(stateData);
+            InjectStateData(stateData);
+
             currentState.OnStateChangeRequest += HandleStateChangeRequest;
 
-            ProjectLog.Info($"[StateMachine] START state '{currentState.GetType().Name}'");
             await currentState.Start(stateData);
+        }
+
+        protected virtual void InjectStateData(DataType stateData)
+        {
+
         }
 
         private async UniTask StopCurrentState()
@@ -30,8 +36,7 @@ namespace MeShineFactory.ApocalypticDrive.Pattern.StateMachine
             if (currentState != null)
             {
                 currentState.OnStateChangeRequest -= HandleStateChangeRequest;
-
-                ProjectLog.Info($"[StateMachine] STOP state '{currentState.GetType().Name}'");
+;
                 await currentState.Stop();
 
                 currentState = null;

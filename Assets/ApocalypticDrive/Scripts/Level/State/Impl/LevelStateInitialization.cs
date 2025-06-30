@@ -11,9 +11,13 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         [Inject] private DiContainer diContainer;
         [Inject] private LevelConfig levelConfig;
         [Inject] private ILevelEnvironment levelEnvironment;
+        [Inject] private IEnemyArmyController enemyArmyController;
 
         public override async UniTask Start(IStateData stateData)
         {
+            ProjectLog.Info("[LevelStateInitialization] Start");
+
+            InitializeArmyController();
             InstantiateVehicle();
             InitializeEnvironment();
 
@@ -33,6 +37,11 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         private void InitializeEnvironment()
         {
             levelEnvironment.StartBuilding();
+        }
+
+        private void InitializeArmyController()
+        {
+            enemyArmyController.Setup();
         }
 
         public override async UniTask Stop()

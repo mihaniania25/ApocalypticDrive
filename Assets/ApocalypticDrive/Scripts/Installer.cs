@@ -1,9 +1,10 @@
-﻿using Zenject;
+﻿using UnityEngine;
+using Zenject;
 using MeShineFactory.ApocalypticDrive.Level.State;
 using MeShineFactory.ApocalypticDrive.Pattern.StateMachine;
 using MeShineFactory.ApocalypticDrive.Level;
-using UnityEngine;
 using MeShineFactory.ApocalypticDrive.Level.Config;
+using MeShineFactory.ApocalypticDrive.Level.Model;
 
 namespace MeShineFactory.ApocalypticDrive
 {
@@ -16,11 +17,14 @@ namespace MeShineFactory.ApocalypticDrive
         {
             Container.Bind<IUserInputController>().To<UserInputController>().AsSingle();
             Container.Bind<IStateFactory<LevelStateData>>().To<LevelStateFactory>().AsSingle();
+            Container.Bind<IStateFactory<EnemyStateData>>().To<EnemyStateFactory>().AsSingle();
             Container.Bind<LevelConfig>().FromInstance(levelConfig).AsSingle();
             Container.Bind<ILevelEnvironment>().To<ClassicLevelEnvironment>().AsSingle();
-            Container.Bind<ICameraController>().FromInstance(cameraController);
+            Container.Bind<ICameraController>().FromInstance(cameraController).AsSingle();
+            Container.Bind<IEnemyArmyController>().To<EnemyArmyController>().AsSingle();
             Container.Bind<LevelProgressListener>().AsSingle();
             Container.Bind<LevelStateMachine>().AsSingle();
+            Container.Bind<GameSessionModel>().AsSingle();
 
             ProjectLog.Info("[Installer] bindings installed");
         }
