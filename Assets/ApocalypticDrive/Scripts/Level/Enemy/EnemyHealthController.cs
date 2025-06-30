@@ -49,6 +49,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public void Dispose()
         {
+            components.Health.Unsubscribe(OnEnemyHealthChange);
             components.EventBus.Unsubscribe(EnemyEventType.HitVehicle, OnEnemyHitVehicle);
         }
     }

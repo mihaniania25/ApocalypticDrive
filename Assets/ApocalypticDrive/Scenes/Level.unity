@@ -1211,6 +1211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelConfig: {fileID: 11400000, guid: 51f54cb3f66054b40b82f6cfb5c97e23, type: 2}
+  audioConfig: {fileID: 11400000, guid: 4ae9ed210c7eac04fbf376d31651a84e, type: 2}
   cameraController: {fileID: 962456811}
   levelUIManager: {fileID: 1502034969}
 --- !u!114 &1998502324
