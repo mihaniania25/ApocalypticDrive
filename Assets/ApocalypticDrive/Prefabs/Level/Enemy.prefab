@@ -229,7 +229,7 @@ MonoBehaviour:
     <HealthBar>k__BackingField: {fileID: 8482133251436921969}
     <MaxHealth>k__BackingField: 100
     <Speed>k__BackingField: 4
-    <Damage>k__BackingField: 0
+    <Damage>k__BackingField: 12
     <VehicleVisibilityDistance>k__BackingField: 7
   hitDetector: {fileID: 2730478861551827284}
 --- !u!136 &6102707228382822480

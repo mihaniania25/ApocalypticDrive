@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
+using Zenject;
+using MeShineFactory.ApocalypticDrive.Level.Model;
 
 namespace MeShineFactory.ApocalypticDrive.Level
 {
     public class Car : MonoBehaviour, IVehicle
     {
+        [Inject] private GameSessionModel sessionModel;
+
         [field: SerializeField] public float Speed { get; private set; }
+        [field: SerializeField] public float MaxHealth { get; private set; } = 100f;
 
         [SerializeField] private float accelerationDuration;
         [SerializeField] private Rigidbody carRigidbody;
@@ -65,7 +70,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public void TakeDamage(float damage)
         {
-#warning TODO: car take damage
+            float newHealth = Mathf.Clamp(sessionModel.Health.Value - damage, 0f, MaxHealth);
+            sessionModel.Health.Value = newHealth;
         }
 
         public void InstallTurret(ITurret turret)

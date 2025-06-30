@@ -3,6 +3,8 @@ using UnityEngine;
 using Zenject;
 using Cysharp.Threading.Tasks;
 using MeShineFactory.ApocalypticDrive.Level.Config;
+using MeShineFactory.ApocalypticDrive.Level.Model;
+using UnityEditor.TestTools.CodeCoverage;
 
 namespace MeShineFactory.ApocalypticDrive.Level.State
 {
@@ -13,12 +15,14 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
 
         [Inject] private IVehicle vehicle;
         [Inject] private LevelConfig levelConfig;
+        [Inject] private GameSessionModel sessionModel;
 
         private bool isListeningEnabled = false;
 
         public void Start()
         {
             isListeningEnabled = true;
+            sessionModel.Health.Subscribe(OnHealthChanged);
             ListenToDistanceProgress().Forget();
         }
 
@@ -39,9 +43,16 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
             }
         }
 
+        private void OnHealthChanged(float health)
+        {
+            if (health <= 0f)
+                OnVehicleHealthLost?.Invoke();
+        }
+
         public void Stop()
         {
             isListeningEnabled = false;
+            sessionModel.Health.Unsubscribe(OnHealthChanged);
         }
     }
 }
