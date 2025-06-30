@@ -3,12 +3,14 @@ using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using Zenject;
 using MeShineFactory.ApocalypticDrive.Level.Model;
+using MeShineFactory.ApocalypticDrive.Audio;
 
 namespace MeShineFactory.ApocalypticDrive.Level
 {
     public class Car : MonoBehaviour, IVehicle
     {
         [Inject] private GameSessionModel sessionModel;
+        [Inject] private IAudioManager audioManager;
 
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public float MaxHealth { get; private set; } = 100f;
@@ -17,6 +19,9 @@ namespace MeShineFactory.ApocalypticDrive.Level
         [SerializeField] private Rigidbody carRigidbody;
         [SerializeField] private Transform turretMount;
 
+        [SerializeField] private AudioSource movementAudioSource;
+        [SerializeField] private AudioSource injuryAudioSource;
+
         private bool isConstantMoving = false;
 
         public Transform Transform => transform;
@@ -24,6 +29,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         public async UniTask StartMoving()
         {
+            audioManager.PlaySound(SoundID.VehicleStart, movementAudioSource);
             await Accelerate(Vector3.forward * Speed);
             ConstantMoving().Forget();
         }
@@ -54,11 +60,13 @@ namespace MeShineFactory.ApocalypticDrive.Level
         public async UniTask Park()
         {
             isConstantMoving = false;
+            audioManager.PlaySound(SoundID.VehicleBreak, movementAudioSource);
             await Accelerate(Vector3.zero);
         }
 
         public async UniTask Explode()
         {
+            audioManager.PlaySound(SoundID.VehicleExplosion, injuryAudioSource);
             await UniTask.CompletedTask;
         }
 
@@ -72,6 +80,8 @@ namespace MeShineFactory.ApocalypticDrive.Level
         {
             float newHealth = Mathf.Clamp(sessionModel.Health.Value - damage, 0f, MaxHealth);
             sessionModel.Health.Value = newHealth;
+
+            audioManager.PlaySound(SoundID.VehicleHit, injuryAudioSource);
         }
 
         public void InstallTurret(ITurret turret)

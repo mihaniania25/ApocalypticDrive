@@ -8,12 +8,15 @@ namespace MeShineFactory.ApocalypticDrive.Level
     public class EnemyComponents
     {
         public PropagationField<float> Health { get; private set; } = new();
+        public bool IsMuted { get; set; } = false;
         public EnemyEventBus EventBus { get; private set; } = new();
         public EnemyStateMachine StateMachine { get; set; }
         public EnemyFxController FxController { get; set; }
+        public EnemyHealthController HealthController { get; set; }
 
         [field: SerializeField] public GameObject Root { get;private set; }
 
+        [field: SerializeField] public AudioSource AudioSource { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public AnimatorListener AnimatorListener { get; private set; }
         [field: SerializeField] public string AnimDeadStateName { get; private set; }

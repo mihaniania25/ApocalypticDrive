@@ -47,9 +47,14 @@ namespace MeShineFactory.ApocalypticDrive.Level
             healthController.TakeDamage(damage);
         }
 
+        public void Mute()
+        {
+            components.IsMuted = true;
+        }
+
         public void Die()
         {
-            components.StateMachine.RunState(EnemyStateType.Dead).Forget();
+            components.Health.Value = 0f;
         }
 
         public void DieInstantly()

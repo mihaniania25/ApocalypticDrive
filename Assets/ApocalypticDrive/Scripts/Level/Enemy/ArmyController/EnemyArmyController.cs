@@ -26,7 +26,11 @@ namespace MeShineFactory.ApocalypticDrive.Level
         public void DestroyAllEnemies()
         {
             List<IEnemy> enemies = new(sessionModel.Enemies);
-            enemies.ForEach(e => e.Die());
+            enemies.ForEach(e =>
+            {
+                e.Mute();
+                e.Die();
+            });
         }
 
         public void GenerateEnemies()
