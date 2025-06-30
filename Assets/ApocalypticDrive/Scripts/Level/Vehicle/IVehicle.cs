@@ -14,5 +14,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         UniTask StartMoving();
         UniTask Park();
         UniTask Explode();
+
+        void InstallTurret(ITurret turret);
     }
 }

@@ -10,6 +10,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         [SerializeField] private float accelerationDuration;
         [SerializeField] private Rigidbody carRigidbody;
+        [SerializeField] private Transform turretMount;
 
         private bool isConstantMoving = false;
 
@@ -59,6 +60,12 @@ namespace MeShineFactory.ApocalypticDrive.Level
         public void TakeDamage(float damage)
         {
 #warning TODO: car take damage
+        }
+
+        public void InstallTurret(ITurret turret)
+        {
+            turret.Transform.position = turretMount.position;
+            turret.Transform.SetParent(turretMount);
         }
     }
 }
