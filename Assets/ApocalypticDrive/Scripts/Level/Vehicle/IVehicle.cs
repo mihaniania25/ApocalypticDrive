@@ -8,6 +8,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         Transform Transform { get; }
         Vector3 Position { get; }
         float Speed { get; }
+        float MaxHealth { get; }
 
         void TakeDamage(float damage);
 

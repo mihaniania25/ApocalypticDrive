@@ -33,10 +33,22 @@ namespace MeShineFactory.ApocalypticDrive.Level
         private void Update()
         {
             if (Time.time > (launchTime + lifetime))
+                Destroy(gameObject);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == Tags.Enemy)
             {
-                trace.RemoveTarget();
+                IEnemy enemy = collision.gameObject.GetComponent<IEnemy>();
+                enemy.TakeDamage(damage);
                 Destroy(gameObject);
             }
+        }
+
+        private void OnDestroy()
+        {
+            trace.RemoveTarget();
         }
     }
 }
