@@ -8,7 +8,8 @@ namespace MeShineFactory.ApocalypticDrive.Level.Config
     {
         [field: SerializeField] public GameObject EnemyPrefab { get; private set; }
         [field: SerializeField] public int EnemiesCount { get; private set; }
-        [field: SerializeField] public float DistanceOffset { get; private set; }
+        [field: SerializeField] public float DistanceOffsetStart { get; private set; }
+        [field: SerializeField] public float DistanceOffsetEnd { get; private set; }
         [field: SerializeField] public float WidthOfGenerationField { get; private set; }
     }
 }
