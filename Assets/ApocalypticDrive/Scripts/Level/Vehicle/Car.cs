@@ -57,6 +57,12 @@ namespace MeShineFactory.ApocalypticDrive.Level
             await UniTask.CompletedTask;
         }
 
+        public void StopInstantly()
+        {
+            isConstantMoving = false;
+            carRigidbody.velocity = Vector3.zero;
+        }
+
         public void TakeDamage(float damage)
         {
 #warning TODO: car take damage
