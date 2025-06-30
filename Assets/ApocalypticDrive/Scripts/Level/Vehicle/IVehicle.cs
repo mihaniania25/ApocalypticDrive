@@ -15,6 +15,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
         UniTask StartMoving();
         UniTask Park();
         UniTask Explode();
+        void Restore();
 
         void StopInstantly();
 
