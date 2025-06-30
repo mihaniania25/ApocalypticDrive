@@ -9744,6 +9744,7 @@ GameObject:
   - component: {fileID: 4012873970993123918}
   - component: {fileID: 5360697548200825933}
   - component: {fileID: 9049562139786906159}
+  - component: {fileID: 2850991178223898305}
   - component: {fileID: 1050113339673782105}
   - component: {fileID: -7116298337186623479}
   m_Layer: 7
@@ -9793,6 +9794,7 @@ MonoBehaviour:
   turretMount: {fileID: 718350800397857345}
   explosionParticles: {fileID: 4306389262995991989}
   explosionDuration: 2
+  flashFx: {fileID: 2850991178223898305}
   movementAudioSource: {fileID: 1050113339673782105}
   injuryAudioSource: {fileID: -7116298337186623479}
 --- !u!54 &4012873970993123918
@@ -9856,6 +9858,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2340713363853120365}
+--- !u!114 &2850991178223898305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8285805099822373284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236d23f4dd96aef47935b33ede598f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 2158508842569227602}
+  flashDelay: 0.02
+  flashInDuration: 0.02
+  flashIdleDuration: 0.05
+  flashOutDuration: 0.03
+  targetStrength: 1
 --- !u!82 &1050113339673782105
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10099,7 +10119,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0ad10160e2a225e4495031ee5bd0a5cc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 47847fbb7ffd8d54bac47d3bed552e5a, type: 2}
+      objectReference: {fileID: 2100000, guid: 4a6ecfe8633d9a341a08c5c51cdc6c71, type: 2}
     - target: {fileID: 919132149155446097, guid: 0ad10160e2a225e4495031ee5bd0a5cc, type: 3}
       propertyPath: m_Name
       value: mesh
@@ -10128,6 +10148,11 @@ PrefabInstance:
 --- !u!4 &990717733366605373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0ad10160e2a225e4495031ee5bd0a5cc, type: 3}
+  m_PrefabInstance: {fileID: 735500689593221590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2158508842569227602 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 0ad10160e2a225e4495031ee5bd0a5cc, type: 3}
   m_PrefabInstance: {fileID: 735500689593221590}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1480982512147192526

@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Zenject;
 using MeShineFactory.ApocalypticDrive.Level.Model;
 using MeShineFactory.ApocalypticDrive.Audio;
+using MeShineFactory.ApocalypticDrive.Fx;
 
 namespace MeShineFactory.ApocalypticDrive.Level
 {
@@ -23,6 +24,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         [SerializeField] private ParticleSystem explosionParticles;
         [SerializeField] private float explosionDuration = 2f;
+        [SerializeField] private FlashFX flashFx;
 
         [SerializeField] private AudioSource movementAudioSource;
         [SerializeField] private AudioSource injuryAudioSource;
@@ -113,6 +115,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
             sessionModel.Health.Value = newHealth;
 
             audioManager.PlaySound(SoundID.VehicleHit, injuryAudioSource);
+            flashFx.ShowFlashFx();
         }
 
         public void InstallTurret(ITurret turret)
