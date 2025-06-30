@@ -6,12 +6,14 @@ using MeShineFactory.ApocalypticDrive.Level;
 using MeShineFactory.ApocalypticDrive.Level.Config;
 using MeShineFactory.ApocalypticDrive.Level.Model;
 using MeShineFactory.ApocalypticDrive.UI;
+using MeShineFactory.ApocalypticDrive.Audio;
 
 namespace MeShineFactory.ApocalypticDrive
 {
     public class Installer : MonoInstaller
     {
         [SerializeField] private LevelConfig levelConfig;
+        [SerializeField] private AudioConfig audioConfig;
         [SerializeField] private DefaultCameraController cameraController;
         [SerializeField] private LevelUIManager levelUIManager;
 
@@ -21,6 +23,8 @@ namespace MeShineFactory.ApocalypticDrive
             Container.Bind<IStateFactory<LevelStateData>>().To<LevelStateFactory>().AsSingle();
             Container.Bind<IStateFactory<EnemyStateData>>().To<EnemyStateFactory>().AsSingle();
             Container.Bind<LevelConfig>().FromInstance(levelConfig).AsSingle();
+            Container.Bind<AudioConfig>().FromInstance(audioConfig).AsSingle();
+            Container.Bind<IAudioManager>().To<AudioManager>().AsSingle();
             Container.Bind<ILevelEnvironment>().To<ClassicLevelEnvironment>().AsSingle();
             Container.Bind<ICameraController>().FromInstance(cameraController).AsSingle();
             Container.Bind<ILevelUIManager>().FromInstance(levelUIManager).AsSingle();
