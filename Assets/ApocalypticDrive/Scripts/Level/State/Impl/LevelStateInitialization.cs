@@ -32,6 +32,12 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
             IVehicle vehicle = vehicleGO.GetComponent<IVehicle>();
 
             diContainer.Bind<IVehicle>().FromInstance(vehicle).AsSingle();
+
+            GameObject turretGO = diContainer.InstantiatePrefab(levelConfig.TurretPrefab);
+            ITurret turret = turretGO.GetComponent<ITurret>();
+
+            vehicle.InstallTurret(turret);
+            diContainer.Bind<ITurret>().FromInstance(turret).AsSingle();
         }
 
         private void InitializeEnvironment()

@@ -10,6 +10,7 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         [Inject] private ICameraController cameraController;
         [Inject] private LevelProgressListener vehicleFlowListener;
         [Inject] private IEnemyArmyController enemyArmyController;
+        [Inject] private ITurretController turretController;
 
         public override async UniTask Start(IStateData stateData)
         {
@@ -19,6 +20,7 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
             await cameraController.LookAtVehicleBack();
             cameraController.StartFollowingVehicle();
             await vehicle.StartMoving();
+            turretController.Enable();
 
             StartVehicleFlowListener();
         }
@@ -43,6 +45,7 @@ namespace MeShineFactory.ApocalypticDrive.Level.State
         public override async UniTask Stop()
         {
             StopVehicleFlowListener();
+            turretController.Disable();
             await UniTask.CompletedTask;
         }
 

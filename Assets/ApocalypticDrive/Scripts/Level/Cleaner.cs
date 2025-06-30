@@ -9,13 +9,17 @@ namespace MeShineFactory.ApocalypticDrive
     {
         [Inject] private ILevelEnvironment levelEnvironment;
         [Inject] private ICameraController cameraController;
-        [Inject] private GameSessionModel sessionModel; 
+        [Inject] private GameSessionModel sessionModel;
+        [Inject] private LazyInject<IVehicle> vehicle;
+        [Inject] private ITurretController turretController;
 
         private void OnApplicationQuit()
         {
             levelEnvironment.StopBuilding();
             cameraController.StopFollowingVehicle();
+            vehicle.Value.StopInstantly();
             sessionModel.Enemies.ForEach(e => e.DieInstantly());
+            turretController.Disable();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace MeShineFactory.ApocalypticDrive.Level
 
         [SerializeField] private float accelerationDuration;
         [SerializeField] private Rigidbody carRigidbody;
+        [SerializeField] private Transform turretMount;
 
         private bool isConstantMoving = false;
 
@@ -56,9 +57,21 @@ namespace MeShineFactory.ApocalypticDrive.Level
             await UniTask.CompletedTask;
         }
 
+        public void StopInstantly()
+        {
+            isConstantMoving = false;
+            carRigidbody.velocity = Vector3.zero;
+        }
+
         public void TakeDamage(float damage)
         {
 #warning TODO: car take damage
+        }
+
+        public void InstallTurret(ITurret turret)
+        {
+            turret.Transform.position = turretMount.position;
+            turret.Transform.SetParent(turretMount);
         }
     }
 }

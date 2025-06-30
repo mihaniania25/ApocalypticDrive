@@ -22,6 +22,7 @@ namespace MeShineFactory.ApocalypticDrive
             Container.Bind<ILevelEnvironment>().To<ClassicLevelEnvironment>().AsSingle();
             Container.Bind<ICameraController>().FromInstance(cameraController).AsSingle();
             Container.Bind<IEnemyArmyController>().To<EnemyArmyController>().AsSingle();
+            Container.Bind<ITurretController>().To<TurretController>().AsSingle();
             Container.Bind<LevelProgressListener>().AsSingle();
             Container.Bind<LevelStateMachine>().AsSingle();
             Container.Bind<GameSessionModel>().AsSingle();
